@@ -1,0 +1,28 @@
+.logo-container {
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.pulsing-logo {
+  width: 100px;
+  height: 100px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
