@@ -37,7 +37,7 @@ jobs:
         run: yarn install
         working-directory: ${{ env.WORKING_DIR }}
       - name: Show TypeScript config being used
-        run: tsc --showConfig
+        run: npx tsc --showConfig
       - name: Build project
         run: yarn run build
         working-directory: ${{ env.WORKING_DIR }}
