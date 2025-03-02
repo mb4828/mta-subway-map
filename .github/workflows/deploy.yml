@@ -38,8 +38,12 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
       - name: Show TypeScript config being used
         run: npx tsc --showConfig
+        working-directory: ${{ env.WORKING_DIR }}
       - name: Build project
         run: yarn run build
+        working-directory: ${{ env.WORKING_DIR }}
+      - name: Run tests
+        run: yarn run test
         working-directory: ${{ env.WORKING_DIR }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
