@@ -2,27 +2,34 @@
 import './SubwayMap.scss';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Map, NavigationControl } from 'react-map-gl';
-import { FeatureCollection } from 'geojson';
 import { themeAtom } from '@state/theme';
 import { useAtom } from 'jotai';
+import { useLinesAtom } from '@state/lines';
+import { useStationsAtom } from '@state/stations';
 
-export default function SubwayMap({
-  lines,
-  stations,
-}: {
-  lines: FeatureCollection | null;
-  stations: FeatureCollection | null;
-}) {
+export default function SubwayMap() {
+  const { data: lines } = useLinesAtom();
+  const { data: stations } = useStationsAtom();
   const [theme] = useAtom(themeAtom);
 
   /** Called when the map finishes loading */
   function onMapLoad(event: any) {
     // put lines and stations on the map
+    if (!lines || !stations) {
+      return;
+    }
     const map = event.target;
 
-    if (lines) {
-      // lines
+    // sources
+    if (!map.getSource('lines')) {
       map.addSource('lines', { type: 'geojson', data: lines });
+    }
+    if (!map.getSource('stations')) {
+      map.addSource('stations', { type: 'geojson', data: stations });
+    }
+
+    // lines
+    if (!map.getLayer('lines')) {
       map.addLayer({
         id: 'lines',
         type: 'line',
@@ -34,9 +41,8 @@ export default function SubwayMap({
       });
     }
 
-    if (stations) {
-      map.addSource('stations', { type: 'geojson', data: stations });
-      // express stations
+    // express stations
+    if (!map.getLayer('express-stations')) {
       map.addLayer({
         id: 'express-stations',
         type: 'circle',
@@ -49,8 +55,10 @@ export default function SubwayMap({
           'circle-stroke-color': '#000',
         },
       });
+    }
 
-      // local stations
+    // local stations
+    if (!map.getLayer('local-stations')) {
       map.addLayer({
         id: 'local-stations',
         type: 'circle',
@@ -63,8 +71,10 @@ export default function SubwayMap({
           'circle-stroke-color': '#fff',
         },
       });
+    }
 
-      // station labels
+    // station labels
+    if (!map.getLayer('station-labels')) {
       map.addLayer({
         id: 'station-labels',
         type: 'symbol',

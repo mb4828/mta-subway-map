@@ -1,14 +1,14 @@
 import './App.scss';
-import Header from '@components/Header';
-import LoadingScreen from '@components/LoadingScreen';
-import SubwayMap from '@components/SubwayMap';
+import Header from '@components/header';
+import LoadingScreen from '@components/loading-screen';
+import SubwayMap from '@components/subway-map';
 import { useLinesAtom } from '@state/lines';
 import { useStationsAtom } from '@state/stations';
 import { useEffect, useState } from 'react';
 
 const App = () => {
-  const { data: lines, isLoading: isLoadingLines } = useLinesAtom();
-  const { data: stations, isLoading: isLoadingStations } = useStationsAtom();
+  const { isLoading: isLoadingLines } = useLinesAtom();
+  const { isLoading: isLoadingStations } = useStationsAtom();
   const [loading, setLoading] = useState(true);
 
   /** Initial load */
@@ -26,7 +26,7 @@ const App = () => {
   ) : (
     <>
       <Header />
-      <SubwayMap lines={lines} stations={stations} />
+      <SubwayMap />
     </>
   );
 };

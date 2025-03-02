@@ -1,32 +1,53 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { useAtom } from 'jotai';
+import userEvent from '@testing-library/user-event';
 import Header from './Header';
 
+// Mock Jotai's useAtom
+vi.mock('jotai', () => ({
+  useAtom: vi.fn(),
+  atom: vi.fn(),
+}));
+
 describe('Header', () => {
-  it('renders the header element', () => {
-    render(<Header />);
-    const header = screen.getByRole('banner'); // semantic role for <header>
-    expect(header).toBeInTheDocument();
+  const mockSetTheme = vi.fn();
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    vi.mocked(useAtom).mockReturnValue(['light', mockSetTheme as never]); // Default to light theme
   });
 
-  it('displays the MTA logo', () => {
+  it('renders logo, title, and theme toggle button', () => {
     render(<Header />);
-    const logo = screen.getByRole('img', { name: /mta/i });
-    expect(logo).toBeInTheDocument();
-    expect(logo).toHaveAttribute('src', 'images/mta-white.svg');
+
+    expect(screen.getByRole('img', { name: /mta/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Subway Map');
+    expect(screen.getByPlaceholderText('Light/Dark')).toBeInTheDocument();
   });
 
-  it('displays the page title', () => {
+  it('toggles theme from light to dark', async () => {
+    const user = userEvent.setup();
+
     render(<Header />);
-    const heading = screen.getByRole('heading', { level: 1 });
-    expect(heading).toHaveTextContent('Subway Map');
+
+    const toggleButton = screen.getByPlaceholderText('Light/Dark');
+
+    await user.click(toggleButton);
+
+    expect(mockSetTheme).toHaveBeenCalledWith('dark');
   });
 
-  it('has correct structure', () => {
-    const { container } = render(<Header />);
-    const header = container.querySelector('header');
-    expect(header).toBeInTheDocument();
-    expect(header?.querySelector('img')).toHaveAttribute('src', 'images/mta-white.svg');
-    expect(header?.querySelector('h1')).toHaveTextContent('Subway Map');
+  it('toggles theme from dark to light', async () => {
+    vi.mocked(useAtom).mockReturnValue(['dark', mockSetTheme as never]);
+
+    const user = userEvent.setup();
+    render(<Header />);
+
+    const toggleButton = screen.getByPlaceholderText('Light/Dark');
+
+    await user.click(toggleButton);
+
+    expect(mockSetTheme).toHaveBeenCalledWith('light');
   });
 });

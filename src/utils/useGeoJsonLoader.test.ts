@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { renderHook, waitFor } from '@testing-library/react';
-import { atom } from 'jotai';
+import { atom, PrimitiveAtom } from 'jotai';
 import { useGeoJsonLoader } from '../utils/useGeoJsonLoader';
 import { vi } from 'vitest';
 import { FeatureCollection } from 'geojson';
@@ -77,7 +77,9 @@ describe('useGeoJsonLoader', () => {
   it('does not refetch if data is already set', async () => {
     const geoJsonAtom = atom<FeatureCollection | null>(mockGeoJson as any);
 
-    const { result } = renderHook(() => useGeoJsonLoader(geoJsonAtom, 'https://example.com/geojson'));
+    const { result } = renderHook(() =>
+      useGeoJsonLoader(geoJsonAtom as PrimitiveAtom<FeatureCollection | null>, 'https://example.com/geojson')
+    );
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.data).toEqual(mockGeoJson);
