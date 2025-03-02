@@ -1,6 +1,6 @@
 # NYCT Subway Map
 
-A NYCT subway map using Vite and Mapbox
+A NYCT subway map using [Vite](https://vite.dev) and [Mapbox](https://www.mapbox.com)
 
 By: Matt Brauner (contact@mattbrauner.com)
 
