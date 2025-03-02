@@ -1,5 +1,5 @@
 import './App.scss';
-import Header from '@components/header';
+import Header from '@components/header2';
 import LoadingScreen from '@components/loading-screen';
 import SubwayMap from '@components/subway-map';
 import { useLinesAtom } from '@state/lines';
