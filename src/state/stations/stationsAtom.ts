@@ -1,10 +1,10 @@
 import { FeatureCollection } from 'geojson';
 import { atom } from 'jotai';
-import { useGeoJsonLoader } from './useGeoJsonLoader';
-import { EXPRESS_LINES, TEXT_OFFSETS, STATIONS_FILE, STATION_OFFSET_OVERRIDES } from '../constants';
+import { useGeoJsonLoader } from '@utils/useGeoJsonLoader';
+import { EXPRESS_LINES, TEXT_OFFSETS, STATIONS_FILE, STATION_OFFSET_OVERRIDES } from '@utils/constants';
 
 /** Base atom */
-const stationsAtom = atom<FeatureCollection | null>(null);
+export const stationsAtom = atom<FeatureCollection | null>(null);
 
 /** Custom hook to load and return the stations */
 export function useStationsAtom() {

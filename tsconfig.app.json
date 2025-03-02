@@ -17,10 +17,21 @@
 
     /* Linting */
     "strict": true,
+    "strictNullChecks": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Tests */
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
+
+    /* Paths */
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@state/*": ["./src/state/*"],
+      "@utils/*": ["./src/utils/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

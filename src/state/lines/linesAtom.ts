@@ -1,7 +1,7 @@
 import { FeatureCollection } from 'geojson';
 import { atom } from 'jotai';
-import { useGeoJsonLoader } from './useGeoJsonLoader';
-import { LINES_FILE } from '../constants';
+import { useGeoJsonLoader } from '@utils/useGeoJsonLoader';
+import { LINES_FILE } from '@utils/constants';
 
 /** Base atom */
 export const linesAtom = atom<FeatureCollection | null>(null);

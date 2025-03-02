@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { renderHook, waitFor } from '@testing-library/react';
 import { atom } from 'jotai';
-import { useGeoJsonLoader } from './useGeoJsonLoader';
+import { useGeoJsonLoader } from '../utils/useGeoJsonLoader';
 import { vi } from 'vitest';
 import { FeatureCollection } from 'geojson';
 

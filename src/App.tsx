@@ -1,14 +1,14 @@
 import './App.scss';
-import { LoadingScreen } from './components/loadingScreen';
-import { useLinesAtom } from './state/linesAtom';
-import { useStationsAtom } from './state/stationsAtom';
+import Header from '@components/Header';
+import LoadingScreen from '@components/LoadingScreen';
+import SubwayMap from '@components/SubwayMap';
+import { useLinesAtom } from '@state/lines';
+import { useStationsAtom } from '@state/stations';
 import { useEffect, useState } from 'react';
-import Header from './components/header';
-import { SubwayMap } from './components/subwayMap';
 
 const App = () => {
-  const { data: lines, isLoading: isLoadingLines, error: linesError } = useLinesAtom();
-  const { data: stations, isLoading: isLoadingStations, error: stationsError } = useStationsAtom();
+  const { data: lines, isLoading: isLoadingLines } = useLinesAtom();
+  const { data: stations, isLoading: isLoadingStations } = useStationsAtom();
   const [loading, setLoading] = useState(true);
 
   /** Initial load */

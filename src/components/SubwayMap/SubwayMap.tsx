@@ -1,16 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import './subwayMap.scss';
-import { Map, NavigationControl } from 'react-map-gl';
+import './SubwayMap.scss';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { Map, NavigationControl } from 'react-map-gl';
 import { FeatureCollection } from 'geojson';
+import { themeAtom } from '@state/theme';
+import { useAtom } from 'jotai';
 
-export function SubwayMap({
+export default function SubwayMap({
   lines,
   stations,
 }: {
   lines: FeatureCollection | null;
   stations: FeatureCollection | null;
 }) {
+  const [theme] = useAtom(themeAtom);
+
   /** Called when the map finishes loading */
   function onMapLoad(event: any) {
     // put lines and stations on the map
@@ -75,8 +79,8 @@ export function SubwayMap({
           'symbol-sort-key': ['case', ['==', ['get', 'STATION_TYPE'], 'EXPRESS'], 1, 100], // prioritize drawing express stations
         },
         paint: {
-          'text-color': '#000',
-          'text-halo-color': '#fff',
+          'text-color': theme === 'light' ? '#000' : '#fff',
+          'text-halo-color': theme === 'light' ? '#fff' : '#000',
           'text-halo-width': 2,
           'text-halo-blur': 0.5,
         },
@@ -93,9 +97,10 @@ export function SubwayMap({
         bearing: 29,
       }}
       style={{ width: '100vw', height: 'calc(100vh - 80px)' }}
-      mapStyle="mapbox://styles/mapbox/light-v10"
+      mapStyle={theme === 'light' ? 'mapbox://styles/mapbox/light-v11' : 'mapbox://styles/mapbox/dark-v11'}
       mapboxAccessToken="pk.eyJ1Ijoid2Zpc2hlciIsImEiOiJjaXI2dHZ2bWUwMG5oZ2FtOTFrc21hcWI1In0.NbX5TzfTH2CtHJTxafWyGg"
       onLoad={onMapLoad}
+      onStyleData={onMapLoad}
     >
       <NavigationControl position="top-left" />
     </Map>

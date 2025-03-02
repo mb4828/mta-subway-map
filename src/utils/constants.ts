@@ -1,13 +1,13 @@
 /** Lines file path */
-export const LINES_FILE = '/nyct-station-line-with-color-updated.geojson';
+export const LINES_FILE = '/data/nyct-station-line-with-color-updated.geojson';
 
 /** Stations file path */
-export const STATIONS_FILE = '/nyct-station-point-filtered.geojson';
+export const STATIONS_FILE = '/data/nyct-station-point-filtered.geojson';
 
 /** List of express lines for station styling */
 export const EXPRESS_LINES = ['2', '3', '4', '5', 'A', 'D', 'Q'];
 
-/** Station offset overrides for different stations */
+/** Overrides to the label position for each station */
 export const STATION_OFFSET_OVERRIDES = new Map<string, string>([
   ['011-TIMESSQ-42ST-BWY-N/R/Q', 'right'],
   ['012-34ST-HERALDSQ-BWY-M/N/R/Q', 'right'],
@@ -35,7 +35,7 @@ export const STATION_OFFSET_OVERRIDES = new Map<string, string>([
   ['469-GRANDCENTRAL-42ST-LEX-S', 'top'],
 ]);
 
-/** Text offset values for different directions */
+/** MapBox Offset values for label text position */
 export const TEXT_OFFSETS = {
   top: [0, -1.5],
   right: [0.75, 0],

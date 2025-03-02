@@ -1,0 +1,32 @@
+header {
+  width: 100vw;
+  height: 48px;
+  padding: 16px;
+  background-color: var(--black-color);
+  color: var(--white-color);
+
+  .header-contents {
+    width: calc(100vw - 32px);
+    height: 47px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: flex-start;
+
+    img {
+      width: 47px;
+    }
+
+    h1 {
+      flex-grow: 1;
+    }
+
+    .theme-toggle {
+      svg {
+        width: 28px;
+        height: 28px;
+        fill: white;
+      }
+    }
+  }
+}
