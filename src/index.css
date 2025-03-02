@@ -1,6 +1,6 @@
 :root {
   --primary-color: rgb(44, 96, 164);
-  --white-color: #fff;
+  --white-color: rgb(243, 243, 243);
   --black-color: rgb(31, 32, 37);
 }
 
@@ -8,7 +8,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Helvetica, Arial, sans-serif;
-  background-color: var(--black-color);
+  background-color: var(--white-color);
 }
 
 h1 {

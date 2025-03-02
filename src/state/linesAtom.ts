@@ -4,7 +4,7 @@ import { useGeoJsonLoader } from './useGeoJsonLoader';
 import { LINES_FILE } from '../constants';
 
 /** Base atom */
-const linesAtom = atom<FeatureCollection | null>(null);
+export const linesAtom = atom<FeatureCollection | null>(null);
 
 /** Custom hook to load and return the lines */
 export function useLinesAtom() {
