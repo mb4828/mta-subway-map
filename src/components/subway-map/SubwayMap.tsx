@@ -108,7 +108,7 @@ export default function SubwayMap() {
       }}
       style={{ width: '100vw', height: 'calc(100vh - 80px)' }}
       mapStyle={theme === 'light' ? 'mapbox://styles/mapbox/light-v11' : 'mapbox://styles/mapbox/dark-v11'}
-      mapboxAccessToken="pk.eyJ1Ijoid2Zpc2hlciIsImEiOiJjaXI2dHZ2bWUwMG5oZ2FtOTFrc21hcWI1In0.NbX5TzfTH2CtHJTxafWyGg"
+      mapboxAccessToken="pk.eyJ1IjoibWI0ODI4IiwiYSI6ImNsMnFweGpuYTAwNXAzY3Bob3lqaG9rMG4ifQ.O8yYprih5CDw3tH0bDrCHw"
       onLoad={onMapLoad}
       onStyleData={onMapLoad}
     >
