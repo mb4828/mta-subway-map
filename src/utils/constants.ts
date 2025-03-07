@@ -1,8 +1,8 @@
 /** Lines file path */
-export const LINES_FILE = '/data/nyct-station-line-with-color-updated.geojson';
+export const LINES_FILE = 'data/nyct-station-line-with-color-updated.geojson';
 
 /** Stations file path */
-export const STATIONS_FILE = '/data/nyct-station-point-filtered.geojson';
+export const STATIONS_FILE = 'data/nyct-station-point-filtered.geojson';
 
 /** List of express lines for station styling */
 export const EXPRESS_LINES = ['2', '3', '4', '5', 'A', 'D', 'Q'];
